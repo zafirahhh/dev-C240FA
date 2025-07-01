@@ -11,6 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
             userMessageElement.textContent = `You: ${userMessage}`;
             chatWindow.appendChild(userMessageElement);
 
+            // Create and append a user message
+            const userMessageDiv = document.createElement("div");
+            userMessageDiv.className = "user-message";
+            userMessageDiv.textContent = `User: ${userMessage}`;
+            document.getElementById("chat-window").appendChild(userMessageDiv);
+
             const botReplyElement = document.createElement('div');
             botReplyElement.style.color = '#800080';
             botReplyElement.textContent = `Bot: Sorry, I don't have information on that yet.`;
@@ -112,11 +118,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const isVisible = chatbot.style.display === 'block';
         chatbot.style.display = isVisible ? 'none' : 'block';
         if (!isVisible) {
-            const introMessage = document.createElement('div');
-            introMessage.style.color = '#800080';
-            introMessage.textContent = 'Bot: Hi! How can I assist you with campus events?';
-            document.getElementById('chat-window').appendChild(introMessage);
+            // Create and append a bot message
+            const message = document.createElement("div");
+            message.className = "bot-message"; // Ensures correct CSS applies
+            message.textContent = "Bot: Hi! How can I assist you with campus events?";
+            document.getElementById("chat-window").appendChild(message);
         }
+    });
+
+    // Toggle chat container visibility
+    document.getElementById("chat-toggle").addEventListener("click", () => {
+        const chat = document.getElementById("chat-container");
+        chat.classList.toggle("chat-hidden");
     });
 
     const closeButton = document.createElement('button');
