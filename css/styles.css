@@ -1,0 +1,47 @@
+/* Color Palette */
+:root {
+    --soft-pink: #FFC0CB;
+    --pastel-blue: #ADD8E6;
+    --pastel-green: #98FB98;
+    --pastel-yellow: #FFFFE0;
+    --neutral-gray: #F5F5F5;
+}
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--neutral-gray);
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: var(--soft-pink);
+    text-align: center;
+    padding: 1rem;
+}
+
+h1 {
+    color: var(--pastel-blue);
+}
+
+#event-feed {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.event-card {
+    background-color: var(--pastel-yellow);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    width: 300px;
+    transition: transform 0.3s ease;
+}
+
+.event-card:hover {
+    transform: scale(1.05);
+}
