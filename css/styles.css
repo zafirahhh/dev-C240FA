@@ -200,15 +200,10 @@ header {
 }
 
 /* Chat Message Styles */
-.chat-message.user {
-    color: #e0ffff;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-.chat-message.bot {
-    color: #dcd6f7;
+.chat-message,
+.bot-message,
+.user-message {
+    color: #ffffff;
     font-weight: 500;
     font-size: 16px;
     line-height: 1.5;
