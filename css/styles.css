@@ -214,6 +214,65 @@ header {
     line-height: 1.5;
 }
 
+/* Event Poster Styles */
+.event-poster {
+    background: linear-gradient(90deg, #ff512f, #dd2476);
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.event-poster h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.event-poster p {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+/* Poster Actions Styles */
+.poster-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.rename-btn,
+.delete-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.rename-btn {
+    background-color: #3498db;
+    color: white;
+}
+
+.rename-btn:hover {
+    background-color: #2980b9;
+}
+
+.delete-btn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
+}
+
 /* Responsive Layout */
 @media (max-width: 768px) {
     #chatbot {
