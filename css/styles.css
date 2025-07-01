@@ -51,26 +51,69 @@ header {
 
 /* Social Media-Style Posts */
 .social-post {
-    background-color: #f4f7fa;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-    margin: 1rem auto;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    margin: 1.5rem auto;
     max-width: 600px;
+    font-family: 'Poppins', sans-serif;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
-.social-post button {
-    background-color: #00b894;
-    color: white;
+.social-post:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+}
+
+.social-post-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.social-post-header img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #00b894;
+}
+
+.social-post-header .username {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.social-post-content {
+    font-size: 15px;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.social-post-actions {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+}
+
+.social-post-actions button {
+    background-color: transparent;
     border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #555;
     cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
     transition: background-color 0.3s ease;
 }
 
-.social-post button:hover {
-    background-color: #00a37a;
+.social-post-actions button:hover {
+    background-color: #f1f1f1;
 }
 
 /* Chatbot Styles */

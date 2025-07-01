@@ -90,19 +90,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const post = document.createElement('div');
         post.className = 'social-post';
         post.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 1rem;">
-                <img src="https://via.placeholder.com/50" alt="Profile Icon" style="border-radius: 50%;">
-                <div>
-                    <h4>${event.title}</h4>
-                    <p>${event.description}</p>
-                </div>
-            </div>
-            <div style="display: flex; gap: 1rem;">
-                <button>💬 Comment</button>
-                <button>❤️ Like</button>
-                <button>🔁 Share</button>
-            </div>
-        `;
+  <div class="social-post-header">
+    <img src="https://cdn-icons-png.flaticon.com/512/2922/2922506.png" alt="Profile Icon">
+    <div class="username">${event.title}</div>
+  </div>
+  <div class="social-post-content">
+    ${event.description}
+  </div>
+  <div class="social-post-actions">
+    <button><span>💬</span> Comment</button>
+    <button><span>❤️</span> Like</button>
+    <button><span>🔁</span> Share</button>
+  </div>
+`;
         socialSection.appendChild(post);
     });
 
