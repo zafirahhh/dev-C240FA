@@ -139,4 +139,42 @@ document.addEventListener('DOMContentLoaded', () => {
         chatbot.style.display = 'none';
     });
     chatbot.appendChild(closeButton);
+
+    // Function to create flashcard-style event posters
+    function createPoster(title, date, theme) {
+        const poster = document.createElement("div");
+        poster.className = "poster-flashcard";
+
+        poster.innerHTML = `
+            <h3>${title}</h3>
+            <p><strong>Date:</strong> ${date}</p>
+            <p><strong>Theme:</strong> ${theme}</p>
+            <div class="poster-actions">
+                <button class="rename-btn">✏️ Rename</button>
+                <button class="delete-btn">🗑️ Delete</button>
+            </div>
+        `;
+
+        // Rename button logic
+        poster.querySelector(".rename-btn").addEventListener("click", () => {
+            const newTitle = prompt("Enter new title:", title);
+            const newDate = prompt("Enter new date:", date);
+            const newTheme = prompt("Enter new theme:", theme);
+            if (newTitle && newDate && newTheme) {
+                poster.querySelector("h3").textContent = newTitle;
+                poster.querySelectorAll("p")[0].innerHTML = `<strong>Date:</strong> ${newDate}`;
+                poster.querySelectorAll("p")[1].innerHTML = `<strong>Theme:</strong> ${newTheme}`;
+            }
+        });
+
+        // Delete button logic
+        poster.querySelector(".delete-btn").addEventListener("click", () => {
+            poster.remove();
+        });
+
+        document.getElementById("poster-list").appendChild(poster);
+    }
+
+    // Example usage of createPoster function
+    createPoster("Sample Event", "2025-08-10", "Sample Theme");
 });
