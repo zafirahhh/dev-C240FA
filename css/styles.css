@@ -199,6 +199,21 @@ header {
     right: 10px;
 }
 
+/* Chat Message Styles */
+.chat-message.user {
+    color: #e0ffff;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.chat-message.bot {
+    color: #dcd6f7;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
 /* Responsive Layout */
 @media (max-width: 768px) {
     #chatbot {
