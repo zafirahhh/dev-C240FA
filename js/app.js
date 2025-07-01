@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderEvents();
 
     // Poster Generation
+    // Poster Generation Form
     const posterForm = document.createElement('form');
     posterForm.innerHTML = `
         <h3>Create Event Poster</h3>
@@ -65,24 +66,18 @@ document.addEventListener('DOMContentLoaded', () => {
         <input type="text" id="poster-theme" placeholder="Theme" required>
         <button type="submit">Generate Poster</button>
     `;
-    document.body.appendChild(posterForm);
 
-    const posterPreview = document.createElement('div');
-    posterPreview.id = 'poster-preview';
-    document.body.appendChild(posterPreview);
+    // Attach form to the correct section
+    document.getElementById("poster-generation").appendChild(posterForm);
 
-    posterForm.addEventListener('submit', (e) => {
+    // On submit → call createPoster()
+    posterForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        const title = document.getElementById('poster-title').value;
-        const date = document.getElementById('poster-date').value;
-        const theme = document.getElementById('poster-theme').value;
-        posterPreview.innerHTML = `
-            <div style="background: linear-gradient(135deg, #ff6a00, #ee0979); padding: 1rem; border-radius: 8px; color: white;">
-                <h2>${title}</h2>
-                <p><strong>Date:</strong> ${date}</p>
-                <p><strong>Theme:</strong> ${theme}</p>
-            </div>
-        `;
+        const title = document.getElementById("poster-title").value;
+        const date = document.getElementById("poster-date").value;
+        const theme = document.getElementById("poster-theme").value;
+        createPoster(title, date, theme);
+        posterForm.reset();
     });
 
     // Add Social Media-Style Previews
