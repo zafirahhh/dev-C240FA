@@ -21,17 +21,151 @@ document.addEventListener('DOMContentLoaded', () => {
             userMessageDiv.textContent = userMessage;
             chatWindow.appendChild(userMessageDiv);
 
-            // Create and append bot reply
-            const botReplyDiv = document.createElement('div');
-            botReplyDiv.className = "bot-message";
-            botReplyDiv.textContent = "Sorry, I don't have information on that yet. But I'm learning!";
-            chatWindow.appendChild(botReplyDiv);
-
-            // Scroll to bottom of chat
-            chatWindow.scrollTop = chatWindow.scrollHeight;
+            // Show typing indicator
+            const typingDiv = document.createElement('div');
+            typingDiv.className = "bot-message typing-indicator";
+            typingDiv.textContent = "Assistant is typing...";
+            chatWindow.appendChild(typingDiv);
             
+            // Scroll to bottom
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+
+            // Generate bot response with realistic delay
+            setTimeout(() => {
+                // Remove typing indicator
+                chatWindow.removeChild(typingDiv);
+                
+                const botResponse = generateBotResponse(userMessage.toLowerCase());
+                const botReplyDiv = document.createElement('div');
+                botReplyDiv.className = "bot-message";
+                botReplyDiv.textContent = botResponse;
+                chatWindow.appendChild(botReplyDiv);
+                
+                // Scroll to bottom of chat
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }, 1000 + Math.random() * 1000); // Random delay between 1-2 seconds
+
             userMessageInput.value = '';
         }
+    }
+
+    function generateBotResponse(message) {
+        // Keywords for different types of queries
+        const responses = {
+            // Event listing queries
+            events: [
+                "Here are the upcoming events:\n• Campus Concert - July 10, 6:00 PM at Main Auditorium\n• Art Exhibition - July 15, 10:00 AM at Art Gallery\n• Tech Talk - July 20, 2:00 PM at Tech Hall",
+                "I found 3 upcoming events for you! Check out the Campus Concert on July 10th, Art Exhibition on July 15th, and Tech Talk on July 20th."
+            ],
+            
+            // Date/time queries
+            when: [
+                "The next event is the Campus Concert on July 10th at 6:00 PM at the Main Auditorium!",
+                "Coming up soon: Campus Concert (July 10), Art Exhibition (July 15), and Tech Talk (July 20)."
+            ],
+            
+            // Location queries
+            where: [
+                "Events are happening at various locations:\n• Main Auditorium (Campus Concert)\n• Art Gallery (Art Exhibition)\n• Tech Hall (Tech Talk)",
+                "Our venues include the Main Auditorium, Art Gallery, and Tech Hall. Which event are you interested in?"
+            ],
+            
+            // Music/concert queries
+            music: [
+                "🎵 The Campus Concert is on July 10th at 6:00 PM in the Main Auditorium! It's going to be an evening of music and fun!",
+                "Love music? Don't miss our Campus Concert on July 10th! It's happening at the Main Auditorium at 6:00 PM."
+            ],
+            
+            // Art queries
+            art: [
+                "🎨 The Art Exhibition starts July 15th at 10:00 AM in the Art Gallery. Come explore the creative works of our students!",
+                "Interested in art? Our Art Exhibition showcases amazing student works starting July 15th at the Art Gallery."
+            ],
+            
+            // Tech queries
+            tech: [
+                "💻 Join our Tech Talk on July 20th at 2:00 PM in Tech Hall to learn about the latest technology trends!",
+                "The Tech Talk is happening July 20th at Tech Hall. Perfect for learning about cutting-edge technology!"
+            ],
+            
+            // Creating events
+            create: [
+                "You can create event posters using the form above! Just fill in the event title, date, and theme, then click 'Generate Poster'.",
+                "To create an event poster, use the 'Create Event Poster' section. Add your event details and I'll help you make it look amazing!"
+            ],
+            
+            // Help queries
+            help: [
+                "I can help you with:\n• Finding upcoming events\n• Event details (dates, times, locations)\n• Creating event posters\n• General campus event information\n\nWhat would you like to know?",
+                "I'm here to assist with campus events! Ask me about upcoming events, venues, dates, or how to create your own event poster."
+            ],
+            
+            // Greeting responses
+            greeting: [
+                "Hello! I'm here to help you discover amazing campus events. What would you like to know?",
+                "Hi there! Ready to explore what's happening on campus? Ask me about upcoming events!",
+                "Welcome! I can help you find events, get details, or create your own event posters. How can I assist?"
+            ]
+        };
+
+        // Check for greetings
+        if (message.match(/\b(hi|hello|hey|good morning|good afternoon|good evening)\b/)) {
+            return getRandomResponse(responses.greeting);
+        }
+        
+        // Check for help requests
+        if (message.match(/\b(help|what can you do|commands|options)\b/)) {
+            return getRandomResponse(responses.help);
+        }
+        
+        // Check for event listing requests
+        if (message.match(/\b(events|what's happening|upcoming|schedule|list)\b/)) {
+            return getRandomResponse(responses.events);
+        }
+        
+        // Check for date/time queries
+        if (message.match(/\b(when|date|time|schedule)\b/)) {
+            return getRandomResponse(responses.when);
+        }
+        
+        // Check for location queries
+        if (message.match(/\b(where|location|venue|place)\b/)) {
+            return getRandomResponse(responses.where);
+        }
+        
+        // Check for music/concert queries
+        if (message.match(/\b(music|concert|band|performance|sing)\b/)) {
+            return getRandomResponse(responses.music);
+        }
+        
+        // Check for art queries
+        if (message.match(/\b(art|exhibition|gallery|painting|draw|creative)\b/)) {
+            return getRandomResponse(responses.art);
+        }
+        
+        // Check for tech queries
+        if (message.match(/\b(tech|technology|computer|programming|coding|digital)\b/)) {
+            return getRandomResponse(responses.tech);
+        }
+        
+        // Check for poster creation queries
+        if (message.match(/\b(create|make|poster|design|generate)\b/)) {
+            return getRandomResponse(responses.create);
+        }
+        
+        // Default responses for unmatched queries
+        const defaultResponses = [
+            "I'm not sure about that specific question, but I can help you with upcoming events, event details, or creating posters. What would you like to know?",
+            "That's an interesting question! I specialize in campus events. Try asking me about upcoming events, venues, or how to create event posters.",
+            "I'd love to help! I can tell you about our Campus Concert, Art Exhibition, Tech Talk, or help you create your own event poster. What interests you?",
+            "Let me help you with campus events! Ask me about what's happening this week, event locations, or how to create amazing event posters."
+        ];
+        
+        return getRandomResponse(defaultResponses);
+    }
+    
+    function getRandomResponse(responseArray) {
+        return responseArray[Math.floor(Math.random() * responseArray.length)];
     }
 
     const eventFeed = document.getElementById('event-feed');
@@ -125,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isVisible && chatWindow.children.length === 0) {
             const welcomeMessage = document.createElement("div");
             welcomeMessage.className = "bot-message";
-            welcomeMessage.textContent = "Hi! How can I assist you with campus events?";
+            welcomeMessage.textContent = "Hi! I'm your Campus Event Assistant. I can help you find upcoming events, get event details, or create event posters. Try asking me 'What events are happening?' or 'Help'";
             chatWindow.appendChild(welcomeMessage);
         }
     });
