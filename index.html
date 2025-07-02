@@ -7,32 +7,48 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <h1 style="font-size: 40px; background: linear-gradient(to right, #6a11cb, #2575fc); -webkit-background-clip: text; background-clip: text; color: transparent;">campASK – Event Generator</h1>
+    <header class="main-header">
+        <div class="header-content">
+            <h1 class="app-title">campASK – Event Generator</h1>
+            <p class="app-subtitle">Discover, Create & Share Campus Events</p>
+        </div>
     </header>
-    <main style="max-width: 1200px; margin: auto;">
-        <section id="event-feed" class="event-grid">
-            <!-- Event cards will be dynamically inserted here -->
+    
+    <main class="main-content">
+        <section class="section-container">
+            <h2 class="section-title">📅 Upcoming Events</h2>
+            <div id="event-feed" class="event-grid">
+                <!-- Event cards will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <section class="section-container">
+            <h2 class="section-title">🎨 Create Event Poster</h2>
+            <div id="poster-generation">
+                <!-- Poster generation form will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <section class="section-container">
+            <h2 class="section-title">🗂️ Your Event Flashcards</h2>
+            <div id="poster-list" class="poster-grid">
+                <!-- Flashcards will be dynamically inserted here -->
+            </div>
         </section>
     </main>
-    <section id="chatbot" style="margin-top: 2rem;">
-        <div id="chat-window">
+
+    <section id="chatbot" class="chatbot-container">
+        <div class="chat-header">
+            <h3>💬 Campus Event Assistant</h3>
+        </div>
+        <div id="chat-window" class="chat-messages">
             <!-- Chat messages will be dynamically inserted here -->
         </div>
-        <div id="chat-input">
+        <div id="chat-input" class="chat-input-container">
             <input type="text" id="user-message" placeholder="Ask about campus events..." aria-label="Type your message">
             <button id="send-button">Send</button>
         </div>
     </section>
-    <section id="poster-generation">
-        <!-- Poster generation form will be dynamically inserted here -->
-    </section>
-    <section id="social-preview">
-        <!-- Social media-style posts will be dynamically inserted here -->
-    </section>
-    <div id="poster-container"></div>
-    <h3 style="margin-top: 40px;">🗂️ Your Event Flashcards</h3>
-    <div id="poster-list" class="poster-grid"></div>
     <button id="chat-bubble" aria-label="Open Chat">💬</button>
     <script src="js/app.js"></script>
 </body>

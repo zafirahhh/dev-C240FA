@@ -3,28 +3,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const userMessageInput = document.getElementById('user-message');
     const sendButton = document.getElementById('send-button');
 
-    sendButton.addEventListener('click', () => {
-        const userMessage = userMessageInput.value.trim();
-        if (userMessage) {
-            const userMessageElement = document.createElement('div');
-            userMessageElement.style.color = '#00FFFF';
-            userMessageElement.textContent = `You: ${userMessage}`;
-            chatWindow.appendChild(userMessageElement);
-
-            // Create and append a user message
-            const userMessageDiv = document.createElement("div");
-            userMessageDiv.className = "user-message";
-            userMessageDiv.textContent = `User: ${userMessage}`;
-            document.getElementById("chat-window").appendChild(userMessageDiv);
-
-            const botReplyElement = document.createElement('div');
-            botReplyElement.style.color = '#800080';
-            botReplyElement.textContent = `Bot: Sorry, I don't have information on that yet.`;
-            chatWindow.appendChild(botReplyElement);
-
-            userMessageInput.value = '';
+    sendButton.addEventListener('click', sendMessage);
+    
+    // Allow Enter key to send message
+    userMessageInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
         }
     });
+
+    function sendMessage() {
+        const userMessage = userMessageInput.value.trim();
+        if (userMessage) {
+            // Create and append user message
+            const userMessageDiv = document.createElement("div");
+            userMessageDiv.className = "user-message";
+            userMessageDiv.textContent = userMessage;
+            chatWindow.appendChild(userMessageDiv);
+
+            // Create and append bot reply
+            const botReplyDiv = document.createElement('div');
+            botReplyDiv.className = "bot-message";
+            botReplyDiv.textContent = "Sorry, I don't have information on that yet. But I'm learning!";
+            chatWindow.appendChild(botReplyDiv);
+
+            // Scroll to bottom of chat
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+            
+            userMessageInput.value = '';
+        }
+    }
 
     const eventFeed = document.getElementById('event-feed');
     const events = [
@@ -112,12 +120,13 @@ document.addEventListener('DOMContentLoaded', () => {
     chatBubble.addEventListener('click', () => {
         const isVisible = chatbot.style.display === 'block';
         chatbot.style.display = isVisible ? 'none' : 'block';
-        if (!isVisible) {
-            // Create and append a bot message
-            const message = document.createElement("div");
-            message.className = "bot-message"; // Ensures correct CSS applies
-            message.textContent = "Bot: Hi! How can I assist you with campus events?";
-            document.getElementById("chat-window").appendChild(message);
+        
+        // Add welcome message when opening chat for the first time
+        if (!isVisible && chatWindow.children.length === 0) {
+            const welcomeMessage = document.createElement("div");
+            welcomeMessage.className = "bot-message";
+            welcomeMessage.textContent = "Hi! How can I assist you with campus events?";
+            chatWindow.appendChild(welcomeMessage);
         }
     });
 
